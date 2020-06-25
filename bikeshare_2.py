@@ -125,8 +125,8 @@ def station_stats(df):
 
     # display most frequent combination of start station and end station trip
 
-    popular_combo = (df['Start Station'] + ' | ' + df['End Station']).mode()[0]
-    print('Most Frequent Combination of Start and End Stations: ', popular_combo)
+    popular_station_combo = (df['Start Station'] + ' | ' + df['End Station']).mode()[0]
+    print('Most Frequent Combination of Start and End Stations: ', popular_station_combo)
 
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
@@ -164,7 +164,7 @@ def user_stats(df):
 
     # Check if Gender column exists
     if 'Gender' in df:
-        
+
         #Display counts of gender
         genders = df['Gender'].value_counts().to_frame()
         print('\nCounts for Each Gender:\n',genders[0:2])
