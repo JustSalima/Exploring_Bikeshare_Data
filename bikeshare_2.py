@@ -16,6 +16,7 @@ def get_filters():
         (str) day - name of the day of week to filter by, or "all" to apply no day filter
     """
     print('Hello! Let\'s explore some US bikeshare data!')
+
     # get user input for city (chicago, new york city, washington). HINT: Use a while loop to handle invalid inputs
     while True:
         city = input('Choose the city for which you want to see data - Chicago, New York or Washington:  ').title()
@@ -31,6 +32,7 @@ def get_filters():
             print('Sorry, I did not understand what you entered.')
         else:
             break
+
     # get user input for day of week (all, monday, tuesday, ... sunday)
     while True:
         day = input('Enter the day of the week that you want to see data.  For all days, enter All.  ').title()
@@ -62,7 +64,7 @@ def load_data(city, month, day):
     # convert the Start Time column to datetime
     df['Start Time'] = pd.to_datetime(df['Start Time'])
 
-    # extract month and day of week from Start Time to create new columns
+    # extract month, day of week, and hour from Start Time to create new columns
     df['month'] = df['Start Time'].dt.month
     df['day'] = df['Start Time'].dt.day_name()
     df['hour'] = df['Start Time'].dt.hour
@@ -164,12 +166,12 @@ def user_stats(df):
 
     # Check if Gender column exists
     if 'Gender' in df:
-        
+
         #Display counts of gender
         genders = df['Gender'].value_counts().to_frame()
         print('\nCounts for Each Gender:\n',genders[0:2])
 
-    # Check if Gender column exists
+    # Check if Birth Year column exists
     if 'Birth Year' in df:
 
         # Display earliest, most recent, and most common year of birth
@@ -187,9 +189,15 @@ def user_stats(df):
 
 def view_raw_data(df):
     """Displays raw data 5 rows at a time."""
+
+    #Variables for start and end row counters
     start = 0
     end = 5
+
+    #Prompt user to view raw data
     view_data = input('\nWould you to view the raw data? Enter yes or no.\n')
+
+    #If user wants to view data, show 5 rows at a time
     while view_data.lower() == 'yes':
         print(df.iloc[start:end])
         start += 5
