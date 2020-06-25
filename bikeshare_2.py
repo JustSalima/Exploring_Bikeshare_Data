@@ -125,7 +125,7 @@ def station_stats(df):
 
     # display most frequent combination of start station and end station trip
 
-    popular_combo = (df['Start Station'] + df['End Station']).mode()[0]
+    popular_combo = (df['Start Station'] + ' | ' + df['End Station']).mode()[0]
     print('Most Frequent Combination of Start and End Stations: ', popular_combo)
 
     print("\nThis took %s seconds." % (time.time() - start_time))
@@ -146,7 +146,7 @@ def trip_duration_stats(df):
 
     # display mean travel time
     avg_duration = df['Trip Duration'].mean()
-
+    print('Average travel time: ', avg_duration)
 
     print('\nThis took %s seconds.' % (time.time() - start_time))
     print('-'*40)
@@ -164,13 +164,32 @@ def user_stats(df):
 
 
     # Display counts of gender
-
+    genders = df['Gender'].value_counts().to_frame()
+    print('\nCounts for Each Gender:\n',genders[0:2])
 
     # Display earliest, most recent, and most common year of birth
+    earliest_yr = df['Birth Year'].min()
+    latest_yr = df['Birth Year'].max()
+    most_common_yr = df['Birth Year'].mode()[0]
 
+    print('\nEarliest Birth Year: ', int(earliest_yr))
+    print('Most Recent Birth Year: ', int(latest_yr))
+    print('Most Common Birth Year: ', int(most_common_yr))
 
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
+
+
+def view_raw_data(df):
+    """Displays raw data 5 rows at a time."""
+    start = 0
+    end = 5
+    view_data = input('\nWould you to view the raw data? Enter yes or no.\n')
+    while view_data.lower() == 'yes':
+        print(df.iloc[start:end])
+        start += 5
+        end +=5
+        view_data = input('\nWould you to view the next 5 rows? Enter yes or no.\n')
 
 
 def main():
@@ -181,7 +200,8 @@ def main():
         time_stats(df)
         station_stats(df)
         trip_duration_stats(df)
-#TODO        user_stats(df)
+        user_stats(df)
+        view_raw_data(df)
 
         restart = input('\nWould you like to restart? Enter yes or no.\n')
         if restart.lower() != 'yes':
