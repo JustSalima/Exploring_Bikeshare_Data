@@ -94,16 +94,16 @@ def time_stats(df):
 
     # display the most common month
     popular_month = df['month'].mode()[0]
-    print('Most Frequent Month: ', popular_month)
+    print('Most Frequent Month:  ', popular_month)
 
 
     # display the most common day of week
     popular_day = df['day'].mode()[0]
-    print('Most Frequent Day of Week: ', popular_day)
+    print('Most Frequent Day of Week:  ', popular_day)
 
     # display the most common start hour
     popular_hour = df['hour'].mode()[0]
-    print('Most Frequent Start Hour: ', popular_hour)
+    print('Most Frequent Start Hour:  ', popular_hour)
 
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
@@ -117,16 +117,16 @@ def station_stats(df):
 
     # display most commonly used start station
     popular_start = df['Start Station'].mode()[0]
-    print('Most Common Start Station: ', popular_start)
+    print('Most Common Start Station:  ', popular_start)
 
     # display most commonly used end station
     popular_end = df['End Station'].mode()[0]
-    print('Most Common End Station: ', popular_end)
+    print('Most Common End Station:  ', popular_end)
 
     # display most frequent combination of start station and end station trip
 
     popular_station_combo = (df['Start Station'] + ' | ' + df['End Station']).mode()[0]
-    print('Most Frequent Combination of Start and End Stations: ', popular_station_combo)
+    print('Most Frequent Combination of Start and End Stations:  ', popular_station_combo)
 
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
@@ -140,13 +140,13 @@ def trip_duration_stats(df):
 
     # display total travel time
     total_duration = df['Trip Duration'].sum()
-    print('Sum of all travel time: ', total_duration)
+    print('Total Travel Time:  ', total_duration)
 
 
 
     # display mean travel time
     avg_duration = df['Trip Duration'].mean()
-    print('Average travel time: ', avg_duration)
+    print('Average Travel Time:  ', avg_duration)
 
     print('\nThis took %s seconds.' % (time.time() - start_time))
     print('-'*40)
@@ -160,14 +160,14 @@ def user_stats(df):
 
     # Display counts of user types
     user_types = df['User Type'].value_counts().to_frame()
-    print('Counts of User Types:\n',user_types[0:2])
+    print('Counts of User Types:  ',user_types[0:2])
 
     # Check if Gender column exists
     if 'Gender' in df:
 
         #Display counts of gender
         genders = df['Gender'].value_counts().to_frame()
-        print('\nCounts for Each Gender:\n',genders[0:2])
+        print('\nCounts for Each Gender:  ',genders[0:2])
 
     # Check if Gender column exists
     if 'Birth Year' in df:
@@ -177,9 +177,9 @@ def user_stats(df):
         latest_yr = df['Birth Year'].max()
         most_common_yr = df['Birth Year'].mode()[0]
 
-        print('\nEarliest Birth Year: ', int(earliest_yr))
-        print('Most Recent Birth Year: ', int(latest_yr))
-        print('Most Common Birth Year: ', int(most_common_yr))
+        print('\nEarliest Birth Year:  ', int(earliest_yr))
+        print('Most Recent Birth Year:  ', int(latest_yr))
+        print('Most Common Birth Year:  ', int(most_common_yr))
 
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
@@ -189,12 +189,12 @@ def view_raw_data(df):
     """Displays raw data 5 rows at a time."""
     start = 0
     end = 5
-    view_data = input('\nWould you to view the raw data? Enter yes or no.\n')
-    while view_data.lower() == 'yes':
+    view_data = input('\nWould you to view the raw data? Enter yes or no.\n').lower()
+    while view_data == 'yes':
         print(df.iloc[start:end])
         start += 5
         end +=5
-        view_data = input('\nWould you to view the next 5 rows? Enter yes or no.\n')
+        view_data = input('\nWould you to view the next 5 rows? Enter yes or no.\n').lower()
 
 
 def main():
