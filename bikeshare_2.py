@@ -33,7 +33,7 @@ def get_filters():
             break
     # get user input for day of week (all, monday, tuesday, ... sunday)
     while True:
-        day = input('Enter the day of the week that you want to see data. Example: For all days, enter All. ').title()
+        day = input('Enter the day of the week that you want to see data.  For all days, enter All. ').title()
         if day not in ('Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'All'):
             print('Sorry, I did not understand what you entered.')
         else:
@@ -94,8 +94,8 @@ def time_stats(df):
     print('\nCalculating The Most Frequent Times of Travel...\n')
     start_time = time.time()
 
+
     # display the most common month
-    #df['month'] = df['Start Time'].dt.month
     popular_month = df['month'].mode()[0]
     print('Most Frequent Month: ', popular_month)
 
@@ -152,17 +152,19 @@ def trip_duration_stats(df):
     avg_duration = df['Trip Duration'].mean()
 
 
-#TODO    print("\nThis took %s seconds." % (time.time() - start_time))
-#TODO    print('-'*40)
+    print('\nThis took %s seconds.' % (time.time() - start_time))
+    print('-'*40)
 
 
-#TODOdef user_stats(df):
+def user_stats(df):
     """Displays statistics on bikeshare users."""
 
-#TODO    print('\nCalculating User Stats...\n')
-#TODO    start_time = time.time()
+    print('\nCalculating User Stats...\n')
+    start_time = time.time()
 
     # Display counts of user types
+    user_types = df['User Type'].value_counts().to_frame()
+    print('Counts of User Types:\n',user_types[0:2])
 
 
     # Display counts of gender
@@ -171,8 +173,8 @@ def trip_duration_stats(df):
     # Display earliest, most recent, and most common year of birth
 
 
-#TODO    print("\nThis took %s seconds." % (time.time() - start_time))
-#TODO    print('-'*40)
+    print("\nThis took %s seconds." % (time.time() - start_time))
+    print('-'*40)
 
 
 def main():
@@ -182,7 +184,7 @@ def main():
 
         time_stats(df)
         station_stats(df)
-#TODO        trip_duration_stats(df)
+        trip_duration_stats(df)
 #TODO        user_stats(df)
 
         restart = input('\nWould you like to restart? Enter yes or no.\n')
