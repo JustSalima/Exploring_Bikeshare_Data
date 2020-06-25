@@ -9,3 +9,6 @@ https://stackoverflow.com/questions/47404472/how-to-insert-a-comma-as-a-thousand
 
 Extracting value_count:
 https://stackoverflow.com/questions/35523635/extract-values-in-pandas-value-counts
+
+Checking for column in df:
+https://stackoverflow.com/questions/24870306/how-to-check-if-a-column-exists-in-pandas
